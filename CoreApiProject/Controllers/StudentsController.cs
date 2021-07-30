@@ -18,21 +18,21 @@ namespace CoreApiProject.Controllers
         List<Student> _oStudent = new List<Student>();
         public StudentsController()
         {
-            _oStudent = new List<Student>();
-            for (int i = 1; i <= 9; i++)
-            {
-                _oStudent.Add(new Student()
-                {
-                    StudentId = i,
-                    Name = "Student" + i,
-                    Roll = "100" + i
-                });
-            }
-            //_oStudent = GetStudents();
+            //_oStudent = new List<Student>();
+            //for (int i = 1; i <= 9; i++)
+            //{
+            //    _oStudent.Add(new Student()
+            //    {
+            //        StudentId = i,
+            //        Name = "Student" + i,
+            //        Roll = "100" + i
+            //    });
+            //}
+            _oStudent = GetStudents();
         }
         // GET: api/<Students>
         [HttpGet]
-        [Route("GetStudents")]
+        //[Route("GetStudents")]
         public List<Student> GetStudents()
        {
             //DataTable dtEmp = new DataTable();
