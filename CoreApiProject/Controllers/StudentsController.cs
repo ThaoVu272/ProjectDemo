@@ -67,6 +67,41 @@ namespace CoreApiProject.Controllers
             }
             return studentList;
         }
+        public List<Student> GetStudents2(int id)
+        {
+            DataTable dtEmp = new DataTable();
+            using (OracleConnection objConn = new OracleConnection("Data Source=THAODB; User ID=student; Password=1234"))
+            {
+                OracleDataAdapter objAdapter = new OracleDataAdapter();
+                OracleCommand objCmd = new OracleCommand();
+                objCmd.Connection = objConn;
+                objCmd.CommandText = "students_get";
+                objCmd.CommandType = CommandType.StoredProcedure;
+                objCmd.Parameters.Add("studentid", OracleDbType.Int32).Value = id;
+                objCmd.Parameters.Add("rs", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+                objAdapter.SelectCommand = objCmd;
+                try
+                {
+                    objConn.Open();
+                    objAdapter.Fill(dtEmp);
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine("Exception: {0}", ex.ToString());
+                }
+                objConn.Close();
+            }
+            List<Student> studentList = new List<Student>();
+            for (int i = 0; i < dtEmp.Rows.Count; i++)
+            {
+                Student student = new Student();
+                student.StudentId = Convert.ToInt32(dtEmp.Rows[i]["studentId"]);
+                student.Name = dtEmp.Rows[i]["name"].ToString();
+                student.Roll = dtEmp.Rows[i]["roll"].ToString();
+                studentList.Add(student);
+            }
+            return studentList;
+        }
 
 
 
@@ -81,8 +116,11 @@ namespace CoreApiProject.Controllers
                 objCmd.Connection = objConn;
                 objCmd.CommandText = "students_i";
                 objCmd.CommandType = CommandType.StoredProcedure;
+                objCmd.Parameters.Add("p_id", OracleDbType.Int32).Value = 1;
                 objCmd.Parameters.Add("p_name", OracleDbType.NVarchar2,255).Value = "Studentx";
-                objCmd.Parameters.Add("rs", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+                objCmd.Parameters.Add("p_roll", OracleDbType.NVarchar2,255).Value = "10092";
+                objCmd.Parameters.Add("p_code", OracleDbType.Int32).Direction = ParameterDirection.Output;
+                objCmd.Parameters.Add("p_mess", OracleDbType.NVarchar2,255).Direction = ParameterDirection.Output;
                 objAdapter.InsertCommand = objCmd;
                 try
                 {
@@ -94,7 +132,8 @@ namespace CoreApiProject.Controllers
                 }
                 objConn.Close();
             }
-            return _oStudent;
+
+            return GetStudents2(1);
         }
 
         // PUT api/<Student>/5

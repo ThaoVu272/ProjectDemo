@@ -82,7 +82,7 @@ namespace BlazorProject.Pages
                 //if (response.IsSuccessStatusCode)
                 //{
                 //    var stringData = response.Content.ReadAsStringAsync().Result;
-                   Students = JsonConvert.DeserializeObject<IEnumerable<Student>>(apiContent);
+                 Students = JsonConvert.DeserializeObject<IEnumerable<Student>>(apiContent);
                 //}
                 //else
                 //{
