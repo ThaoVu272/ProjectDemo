@@ -69,7 +69,7 @@ namespace BlazorProject.Pages
             //client.DefaultRequestHeaders.Accept.Add(contentType);
             var message = new HttpRequestMessage();
             message.Headers.Add("Accept", "application/json");
-            message.RequestUri = new Uri("http://localhost:44325/api/Students");
+            message.RequestUri = new Uri("http://localhost:44325/api/Students/GetStudents");
             client.DefaultRequestHeaders.Clear();
             
             HttpResponseMessage apiResponse = null;

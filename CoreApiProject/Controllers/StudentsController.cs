@@ -35,39 +35,39 @@ namespace CoreApiProject.Controllers
         //[Route("GetStudents")]
         public List<Student> GetStudents()
        {
-            //DataTable dtEmp = new DataTable();
-            //using (OracleConnection objConn = new OracleConnection("Data Source=THAODB; User ID=student; Password=1234"))
-            //{
-            //    OracleDataAdapter objAdapter = new OracleDataAdapter();
-            //    OracleCommand objCmd = new OracleCommand();
-            //    objCmd.Connection = objConn;
-            //    objCmd.CommandText = "students_get";
-            //    objCmd.CommandType = CommandType.StoredProcedure;
-            //    objCmd.Parameters.Add("studentid", OracleDbType.Int32).Value = -1;
-            //    objCmd.Parameters.Add("rs", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
-            //    objAdapter.SelectCommand = objCmd;
-            //    try
-            //    {
-            //        objConn.Open();
-            //        objAdapter.Fill(dtEmp);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        System.Console.WriteLine("Exception: {0}", ex.ToString());
-            //    }
-            //    objConn.Close();
-            //}
-            //List<Student> studentList = new List<Student>();
-            //for (int i = 0; i < dtEmp.Rows.Count; i++)
-            //{
-            //    Student student = new Student();
-            //    student.StudentId = Convert.ToInt32(dtEmp.Rows[i]["studentId"]);
-            //    student.Name = dtEmp.Rows[i]["name"].ToString();
-            //    student.Roll = dtEmp.Rows[i]["roll"].ToString();
-            //    studentList.Add(student);
-            //}
-            //return studentList;
-            return _oStudent;
+            DataTable dtEmp = new DataTable();
+            using (OracleConnection objConn = new OracleConnection("Data Source=THAODB; User ID=student; Password=1234"))
+            {
+                OracleDataAdapter objAdapter = new OracleDataAdapter();
+                OracleCommand objCmd = new OracleCommand();
+                objCmd.Connection = objConn;
+                objCmd.CommandText = "students_get";
+                objCmd.CommandType = CommandType.StoredProcedure;
+                objCmd.Parameters.Add("studentid", OracleDbType.Int32).Value = -1;
+                objCmd.Parameters.Add("rs", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+                objAdapter.SelectCommand = objCmd;
+                try
+                {
+                    objConn.Open();
+                    objAdapter.Fill(dtEmp);
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine("Exception: {0}", ex.ToString());
+                }
+                objConn.Close();
+            }
+            List<Student> studentList = new List<Student>();
+            for (int i = 0; i < dtEmp.Rows.Count; i++)
+            {
+                Student student = new Student();
+                student.StudentId = Convert.ToInt32(dtEmp.Rows[i]["studentId"]);
+                student.Name = dtEmp.Rows[i]["name"].ToString();
+                student.Roll = dtEmp.Rows[i]["roll"].ToString();
+                studentList.Add(student);
+            }
+            return studentList;
+           // return _oStudent;
         }
         public List<Student> GetStudents2(int id)
         {
