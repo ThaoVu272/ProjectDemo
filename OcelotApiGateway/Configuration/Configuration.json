@@ -1,8 +1,7 @@
 {
   "ReRoutes": [
-    //product api config
     {
-      "DownstreamPathTemplate": "/api/Student/{everything}",
+      "DownstreamPathTemplate": "/api/Students/{everything}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -10,30 +9,14 @@
           "Port": 44325
         }
       ],
-      "UpstreamPathTemplate": "/api/Student/{everything}",
+      "UpstreamPathTemplate": "/api/Students/{everything}",
       "UpstreamHttpMethod": [
         "GET",
         "POST",
         "PUT",
         "DELETE"
-      ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "TestKey",
-        "AllowedScopes": []
-      },
-      "RateLimitOptions": {
-        "ClientWhitelist": [],
-        "EnableRateLimiting": true,
-        "Period": "1s",
-        "PeriodTimespan": 1,
-        "Limit": 1
-      },
-      "FileCacheOptions": {
-        "TtlSeconds": 15,
-        "Region": "productcaching"
-      }
+      ]
     },
-    //payment api config
     {
       "DownstreamPathTemplate": "/api/Class/{everything}",
       "DownstreamScheme": "https",
@@ -49,22 +32,7 @@
         "POST",
         "PUT",
         "DELETE"
-      ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "TestKey",
-        "AllowedScopes": []
-      },
-      "RateLimitOptions": {
-        "ClientWhitelist": [],
-        "EnableRateLimiting": true,
-        "Period": "1s",
-        "PeriodTimespan": 1,
-        "Limit": 1
-      },
-      "FileCacheOptions": {
-        "TtlSeconds": 15,
-        "Region": "paymentcaching"
-      }
+      ]
     }
   ],
   "GlobalConfiguration": {

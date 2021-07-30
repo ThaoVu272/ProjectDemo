@@ -21,6 +21,12 @@ namespace OcelotApiGateway
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                }).ConfigureAppConfiguration((hostingContext, config) =>
+                    {
+                        config
+                        .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
+                        .AddJsonFile("Configuration\\Configuration.json", optional: false, reloadOnChange: true);
+                    }
+                );
     }
 }
