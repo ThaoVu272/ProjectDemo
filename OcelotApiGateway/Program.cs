@@ -25,7 +25,11 @@ namespace OcelotApiGateway
                     {
                         config
                         .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
-                        .AddJsonFile("Configuration\\Configuration.json", optional: false, reloadOnChange: true);
+                        //.AddJsonFile("Configuration\\Configuration.json", optional: false, reloadOnChange: true)
+                        .AddJsonFile("Ocelot.json", optional: false, reloadOnChange: true)
+                        .AddEnvironmentVariables()
+                        //.AddEnvironmentVariables()
+                        ;
                     }
                 );
     }

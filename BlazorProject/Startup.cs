@@ -1,4 +1,5 @@
 using BlazorProject.Data;
+using BlazorProject.Iservice;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -30,7 +31,7 @@ namespace BlazorProject
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
-            services.AddHttpClient();
+            services.AddHttpClient<IStudentservice,Studentservice>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

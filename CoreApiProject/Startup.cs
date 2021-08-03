@@ -46,6 +46,7 @@ namespace CoreApiProject
             {
                 endpoints.MapControllers();
             });
+            app.UseConsul();
         }
     }
 }

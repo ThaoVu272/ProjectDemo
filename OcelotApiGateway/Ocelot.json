@@ -1,0 +1,42 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/Students/{everything}",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/Students/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ],
+      "ServiceName": "Students",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Class/{everything}",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/Class/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ],
+      "ServiceName": "Class",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Scheme": "https",
+      "Host": "localhost",
+      "Port": 8500,
+      "Type": "Consul"
+    }
+  }
+}
